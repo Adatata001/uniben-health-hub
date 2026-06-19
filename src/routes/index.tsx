@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import hero from "@/assets/hero.jpg";
 import doctorImg from "@/assets/feature-doctor.jpg";
 import pharmacyImg from "@/assets/feature-pharmacy.jpg";
+import studentImg from "@/assets/student.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -172,7 +173,7 @@ function Index() {
             <div className="md:col-span-5">
               <div className="aspect-[4/5] max-w-sm overflow-hidden rounded-md border border-border bg-muted">
                 <img
-                  src={new URL("@/assets/student.jpg", import.meta.url).href}
+                  src={studentImg}
                   alt="Akhazogie Victoria Precious"
                   loading="lazy"
                   width={800}
