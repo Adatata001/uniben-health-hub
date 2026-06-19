@@ -265,8 +265,8 @@ function OverviewTab({
               <BarChart data={stats.byLevel}>
                 <XAxis dataKey="level" tickLine={false} axisLine={false} fontSize={11} />
                 <YAxis tickLine={false} axisLine={false} fontSize={11} allowDecimals={false} />
-                <Tooltip cursor={{ fill: "hsl(var(--muted))" }} contentStyle={{ background: "hsl(var(--background))", border: "1px solid hsl(var(--border))", fontSize: 12 }} />
-                <Bar dataKey="count" fill="hsl(var(--foreground))" radius={[4, 4, 0, 0]} />
+                <Tooltip cursor={{ fill: "var(--muted)" }} contentStyle={{ background: "var(--background)", border: "1px solid var(--border)", fontSize: 12, color: "var(--foreground)" }} />
+                <Bar dataKey="count" fill="var(--foreground)" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -285,7 +285,7 @@ function OverviewTab({
                     <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip contentStyle={{ background: "hsl(var(--background))", border: "1px solid hsl(var(--border))", fontSize: 12 }} />
+                <Tooltip contentStyle={{ background: "var(--background)", border: "1px solid var(--border)", fontSize: 12, color: "var(--foreground)" }} />
               </PieChart>
             </ResponsiveContainer>
           </div>
