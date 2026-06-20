@@ -27,9 +27,9 @@ function Index() {
               <span className="italic text-muted-foreground">quietly modernised.</span>
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              A secure web platform that automates the storage, retrieval and
-              management of student health data at the University of Benin Health
-              Centre — replacing paper folders with near-instant access.
+              A secure web platform that replaces paper folders with instant,
+              role-based access to student health data — built for the staff
+              and students of the UNIBEN Health Centre.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <Link
@@ -58,11 +58,11 @@ function Index() {
               />
               <div className="absolute bottom-4 left-4 right-4 rounded-md bg-background/90 p-4 backdrop-blur">
                 <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                  Patient · CSC/2020/0011
+                  A final-year project
                 </p>
-                <p className="mt-1 font-display text-2xl">Akhazogie Victoria Precious</p>
+                <p className="mt-1 font-display text-2xl">Paper to pixels.</p>
                 <p className="mt-1 text-xs text-muted-foreground">
-                  Blood group O+ · No known allergies · Last visit 12 Jun 2026
+                  Quiet, modern record-keeping for a busy university clinic.
                 </p>
               </div>
             </div>
