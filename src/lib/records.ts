@@ -61,12 +61,26 @@ export type AuditLogEntry = {
   timestamp: string;
 };
 
-const P_KEY = "uniben.csc.patients.v2";
+const P_KEY = "uniben.csc.patients.v3";
 const R_KEY = "uniben.csc.records.v2";
 const A_KEY = "uniben.csc.appointments.v1";
 const L_KEY = "uniben.csc.audit.v1";
 
-const seedPatients: Patient[] = [
+const localLevels: Level[] = ["100", "200", "300", "400"];
+const seedFirstNames = [
+  "Amina", "Chidera", "Emeka", "Fatima", "Gbenga", "Halima", "Isaac", "Joy", "Kemi", "Leke",
+  "Mercy", "Ngozi", "Ola", "Peace", "Precious", "Rasheed", "Sade", "Tosin", "Uche", "Yemi",
+];
+const seedLastNames = [
+  "Adeyemi", "Balogun", "Chukwu", "Dairo", "Eze", "Fashola", "Ibrahim", "Johnson", "Kalu", "Lawal",
+  "Muhammad", "Nwachukwu", "Okonkwo", "Olabode", "Okafor", "Oni", "Opara", "Samuel", "Udo", "Yusuf",
+];
+const seedBloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"] as const;
+const seedGenotypes = ["AA", "AS", "AC", "SS", "SC"] as const;
+const seedAllergies = ["None", "Pollen", "Penicillin", "Dust", "Peanuts", "Latex", "Gluten", "Eggs", "Seafood", "Mold"];
+const seedStatuses: Status[] = ["Active", "Follow-up", "Cleared"];
+
+const basePatients: Patient[] = [
   { id: "p1", matric: "CSC/2021/0011", name: "Akhazogie Victoria Precious", level: "400", gender: "Female", dob: "2002-04-18", phone: "0803 111 0011", bloodGroup: "O+", genotype: "AA", allergies: "None", status: "Active", attachments: [] },
   { id: "p2", matric: "CSC/2021/0142", name: "Daniel Osaze Ighodaro", level: "400", gender: "Male", dob: "2003-09-02", phone: "0803 111 0142", bloodGroup: "A+", genotype: "AS", allergies: "Penicillin", status: "Follow-up" },
   { id: "p3", matric: "CSC/2022/0307", name: "Grace Eweka", level: "300", gender: "Female", dob: "2004-01-22", phone: "0803 111 0307", bloodGroup: "B+", genotype: "AA", allergies: "None", status: "Cleared" },
@@ -75,6 +89,41 @@ const seedPatients: Patient[] = [
   { id: "p6", matric: "CSC/2021/0166", name: "Samuel Eghosa", level: "400", gender: "Male", dob: "2003-12-04", phone: "0803 111 0166", bloodGroup: "A-", genotype: "AS", allergies: "None", status: "Active" },
   { id: "p7", matric: "CSC/2022/0289", name: "Blessing Idahosa", level: "300", gender: "Female", dob: "2004-07-19", phone: "0803 111 0289", bloodGroup: "O+", genotype: "AA", allergies: "Peanuts", status: "Follow-up" },
   { id: "p8", matric: "CSC/2023/0098", name: "Tunde Bakare", level: "200", gender: "Male", dob: "2005-02-14", phone: "0803 111 0098", bloodGroup: "B-", genotype: "AA", allergies: "None", status: "Cleared" },
+];
+
+function createDummyPatient(index: number): Patient {
+  const seq = index + 9;
+  const first = seedFirstNames[seq % seedFirstNames.length];
+  const last = seedLastNames[Math.floor(seq / seedFirstNames.length) % seedLastNames.length];
+  const level = localLevels[seq % localLevels.length];
+  const gender = seq % 2 === 0 ? "Female" : "Male";
+  const bloodGroup = seedBloodGroups[seq % seedBloodGroups.length];
+  const genotype = seedGenotypes[seq % seedGenotypes.length];
+  const allergies = seedAllergies[seq % seedAllergies.length];
+  const status = seedStatuses[seq % seedStatuses.length];
+  const padded = String(seq).padStart(4, "0");
+  const matric = `CSC/2024/${padded}`;
+  const year = 2003 + ((seq % 4) + 1);
+  const month = String((seq % 12) + 1).padStart(2, "0");
+  const day = String((seq % 28) + 1).padStart(2, "0");
+  return {
+    id: `p${seq}`,
+    matric,
+    name: `${first} ${last}`,
+    level,
+    gender,
+    dob: `${year}-${month}-${day}`,
+    phone: `0803 20${String(seq).padStart(4, "0")}`,
+    bloodGroup,
+    genotype,
+    allergies,
+    status,
+  };
+}
+
+const seedPatients: Patient[] = [
+  ...basePatients,
+  ...Array.from({ length: 192 }, (_, idx) => createDummyPatient(idx)),
 ];
 
 const seedRecords: ClinicalRecord[] = [
