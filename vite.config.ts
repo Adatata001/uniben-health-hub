@@ -12,19 +12,4 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
-  vite: {
-    ssr: {
-      external: [],
-    },
-  },
-  nitro: {
-    prerender: {
-      crawlLinks: true,
-    },
-    output: {
-      dir: ".output",
-      serverDir: ".output/server",
-      publicDir: ".output/public",
-    },
-  },
 });
