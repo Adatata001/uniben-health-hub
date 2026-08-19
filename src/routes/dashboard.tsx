@@ -255,7 +255,7 @@ function OverviewTab({ patients, records, appointments, stats }: {
   patients: Patient[]; records: ClinicalRecord[]; appointments: Appointment[];
   stats: { byLevel: { level: string; count: number }[]; byStatus: { name: Status; value: number }[] };
 }) {
-  const PIE_COLORS = ["#0f0f0f", "#737373", "#d4d4d4"];
+  const PIE_COLORS = ["var(--primary)", "var(--gold)", "var(--success)"];
   const activeCount = patients.filter((p) => p.status === "Active").length;
   const pending = appointments.filter((a) => a.status === "Pending").length;
 
