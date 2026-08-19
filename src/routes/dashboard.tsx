@@ -20,6 +20,7 @@ import {
   type Attachment,
 } from "@/lib/records";
 import { Download, Pencil, Plus, Trash2, X, Check, Paperclip } from "lucide-react";
+import unibenLogo from "@/assets/uniben-logo.png.asset.json";
 import {
   BarChart,
   Bar,
@@ -184,9 +185,7 @@ function Dashboard() {
       <header className="border-b border-border">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 px-4 py-3 md:px-6 md:py-4">
           <Link to="/" className="flex items-center gap-2">
-            <span className="grid h-7 w-7 place-items-center rounded-sm bg-primary text-primary-foreground">
-              <span className="font-mono text-[11px]">M</span>
-            </span>
+            <img src={unibenLogo.url} alt="University of Benin logo" width={28} height={28} className="h-7 w-7 shrink-0 object-contain" />
             <span className="font-mono text-xs md:text-sm">MedRecords / Health staff</span>
           </Link>
           <div className="flex items-center gap-3">
@@ -256,7 +255,7 @@ function OverviewTab({ patients, records, appointments, stats }: {
   patients: Patient[]; records: ClinicalRecord[]; appointments: Appointment[];
   stats: { byLevel: { level: string; count: number }[]; byStatus: { name: Status; value: number }[] };
 }) {
-  const PIE_COLORS = ["#0f0f0f", "#737373", "#d4d4d4"];
+  const PIE_COLORS = ["var(--primary)", "var(--gold)", "var(--success)"];
   const activeCount = patients.filter((p) => p.status === "Active").length;
   const pending = appointments.filter((a) => a.status === "Pending").length;
 
@@ -279,7 +278,7 @@ function OverviewTab({ patients, records, appointments, stats }: {
                 <XAxis dataKey="level" tickLine={false} axisLine={false} fontSize={11} />
                 <YAxis tickLine={false} axisLine={false} fontSize={11} allowDecimals={false} />
                 <Tooltip cursor={{ fill: "var(--muted)" }} contentStyle={{ background: "var(--background)", border: "1px solid var(--border)", fontSize: 12, color: "var(--foreground)" }} />
-                <Bar dataKey="count" fill="var(--foreground)" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="count" fill="var(--primary)" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
