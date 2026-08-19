@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { Stethoscope, GraduationCap } from "lucide-react";
-import unibenLogo from "@/assets/uniben-logo.png.asset.json";
+import unibenLogo from "@/assets/uniben-logo.png";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({
@@ -19,7 +19,7 @@ function AuthPage() {
       <header className="border-b border-border">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <Link to="/" className="flex items-center gap-2">
-            <img src={unibenLogo.url} alt="University of Benin logo" width={28} height={28} className="h-7 w-7 shrink-0 object-contain" />
+            <img src={unibenLogo} alt="University of Benin logo" width={28} height={28} className="h-7 w-7 shrink-0 object-contain" />
             <span className="font-mono text-sm tracking-tight">MedRecords / UNIBEN</span>
           </Link>
           <Link to="/" className="font-mono text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground">

@@ -13,7 +13,7 @@ import {
   type AppointmentStatus,
 } from "@/lib/records";
 import { Download, CalendarPlus, X } from "lucide-react";
-import unibenLogo from "@/assets/uniben-logo.png.asset.json";
+import unibenLogo from "@/assets/uniben-logo.png";
 
 export const Route = createFileRoute("/student")({
   ssr: false,
@@ -84,7 +84,7 @@ function StudentPage() {
       <header className="border-b border-border">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-3 md:px-6 md:py-4">
           <Link to="/" className="flex items-center gap-2">
-            <img src={unibenLogo.url} alt="University of Benin logo" width={28} height={28} className="h-7 w-7 shrink-0 object-contain" />
+            <img src={unibenLogo} alt="University of Benin logo" width={28} height={28} className="h-7 w-7 shrink-0 object-contain" />
             <span className="font-mono text-xs md:text-sm">MedRecords / Student</span>
           </Link>
           <Link to="/auth" className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-foreground md:text-xs">
