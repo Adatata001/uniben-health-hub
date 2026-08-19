@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import hero from "@/assets/hero.jpg";
+import unibenLogo from "@/assets/uniben-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -80,9 +81,7 @@ function Nav() {
     <header className="sticky top-0 z-30 border-b border-border bg-background/80 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link to="/" className="flex items-center gap-2">
-          <span className="grid h-7 w-7 place-items-center rounded-sm bg-primary text-primary-foreground">
-            <span className="font-mono text-[11px]">M</span>
-          </span>
+          <img src={unibenLogo.url} alt="University of Benin logo" width={28} height={28} className="h-7 w-7 shrink-0 object-contain" />
           <span className="font-mono text-sm tracking-tight">MedRecords / UNIBEN</span>
         </Link>
         <Link

@@ -21,6 +21,7 @@ import {
 } from "@/lib/records";
 import { Download, Pencil, Plus, Trash2, X, Check, Paperclip } from "lucide-react";
 import {
+import unibenLogo from "@/assets/uniben-logo.png.asset.json";
   BarChart,
   Bar,
   XAxis,
@@ -184,9 +185,7 @@ function Dashboard() {
       <header className="border-b border-border">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 px-4 py-3 md:px-6 md:py-4">
           <Link to="/" className="flex items-center gap-2">
-            <span className="grid h-7 w-7 place-items-center rounded-sm bg-primary text-primary-foreground">
-              <span className="font-mono text-[11px]">M</span>
-            </span>
+            <img src={unibenLogo.url} alt="University of Benin logo" width={28} height={28} className="h-7 w-7 shrink-0 object-contain" />
             <span className="font-mono text-xs md:text-sm">MedRecords / Health staff</span>
           </Link>
           <div className="flex items-center gap-3">
