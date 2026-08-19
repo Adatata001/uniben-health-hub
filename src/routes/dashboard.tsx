@@ -278,7 +278,7 @@ function OverviewTab({ patients, records, appointments, stats }: {
                 <XAxis dataKey="level" tickLine={false} axisLine={false} fontSize={11} />
                 <YAxis tickLine={false} axisLine={false} fontSize={11} allowDecimals={false} />
                 <Tooltip cursor={{ fill: "var(--muted)" }} contentStyle={{ background: "var(--background)", border: "1px solid var(--border)", fontSize: 12, color: "var(--foreground)" }} />
-                <Bar dataKey="count" fill="var(--foreground)" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="count" fill="var(--primary)" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
