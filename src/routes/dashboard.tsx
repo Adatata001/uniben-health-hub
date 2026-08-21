@@ -568,6 +568,7 @@ function PatientModal({ value, onChange, onClose, onSave }: {
       <div className="grid grid-cols-2 gap-4">
         <L label="Matriculation no."><input className={inputCls} value={value.matric} onChange={(e) => set("matric", e.target.value)} /></L>
         <L label="Full name"><input className={inputCls} value={value.name} onChange={(e) => set("name", e.target.value)} /></L>
+        <L label="Department"><input className={inputCls} maxLength={3} value={value.department ?? "CSC"} onChange={(e) => set("department", e.target.value.toUpperCase().replace(/[^A-Z]/g, ""))} /></L>
         <L label="Level">
           <select className={inputCls} value={value.level} onChange={(e) => set("level", e.target.value as Patient["level"])}>
             {LEVELS.map((l) => <option key={l} value={l}>{l} Level</option>)}
