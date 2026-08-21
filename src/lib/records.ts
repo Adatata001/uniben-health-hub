@@ -195,3 +195,85 @@ export function uid(prefix = "x") {
 
 export const VICTORIA_ID = "p1";
 export const LEVELS: Level[] = ["100", "200", "300", "400"];
+
+/* ---------- student session (sign up / sign in) ---------- */
+
+const S_KEY = "uniben.csc.session.v1";
+
+export const DEPARTMENTS = ["CSC", "MTH", "PHY", "CHM", "POL", "ECO", "ACC", "LAW", "MCB", "GEO"];
+
+export const MATRIC_REGEX = /^[A-Z]{3}\d{7}$/;
+
+export function normalizeMatric(input: string) {
+  return input.toUpperCase().replace(/[^A-Z0-9]/g, "");
+}
+
+export function getSessionStudentId(): string | null {
+  if (typeof window === "undefined") return null;
+  try {
+    return localStorage.getItem(S_KEY);
+  } catch {
+    return null;
+  }
+}
+
+export function setSessionStudentId(id: string) {
+  if (typeof window === "undefined") return;
+  try { localStorage.setItem(S_KEY, id); } catch { /* ignore */ }
+}
+
+export function clearSessionStudentId() {
+  if (typeof window === "undefined") return;
+  try { localStorage.removeItem(S_KEY); } catch { /* ignore */ }
+}
+
+export type SignUpInput = {
+  name: string;
+  level: Level;
+  department: string;
+  matric: string;
+};
+
+export function signUpStudent(input: SignUpInput): { ok: true; patient: Patient } | { ok: false; error: string } {
+  const name = input.name.trim();
+  const matric = normalizeMatric(input.matric);
+  const department = input.department.trim().toUpperCase();
+
+  if (name.length < 3 || name.length > 100) return { ok: false, error: "Enter your full name." };
+  if (!/^[A-Z]{3}$/.test(department)) return { ok: false, error: "Department must be a 3-letter code (e.g. CSC)." };
+  if (!MATRIC_REGEX.test(matric)) return { ok: false, error: "Matriculation number must look like PSC2010374." };
+
+  const list = getPatients();
+  if (list.some((p) => normalizeMatric(p.matric) === matric)) {
+    return { ok: false, error: "That matriculation number is already registered. Sign in instead." };
+  }
+
+  const patient: Patient = {
+    id: uid("p"),
+    matric,
+    name,
+    level: input.level,
+    department,
+    gender: "Female",
+    dob: "",
+    phone: "",
+    bloodGroup: "O+",
+    genotype: "AA",
+    allergies: "None",
+    status: "Active",
+    attachments: [],
+  };
+  savePatients([patient, ...list]);
+  logAudit({ actor: name, action: "create", entity: "patient", target: `${name} (${matric}) self-registered` });
+  return { ok: true, patient };
+}
+
+export function signInStudent(name: string, matric: string): { ok: true; patient: Patient } | { ok: false; error: string } {
+  const wantedName = name.trim().toLowerCase();
+  const wantedMatric = normalizeMatric(matric);
+  const patient = getPatients().find(
+    (p) => normalizeMatric(p.matric) === wantedMatric && p.name.trim().toLowerCase() === wantedName,
+  );
+  if (!patient) return { ok: false, error: "No record found for that name and matriculation number." };
+  return { ok: true, patient };
+}
