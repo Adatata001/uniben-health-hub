@@ -129,14 +129,14 @@ const seedPatients: Patient[] = [
 ];
 
 const seedRecords: ClinicalRecord[] = [
-  { id: "r1", patientId: "p1", date: "2026-06-12", complaint: "Fever and headache", diagnosis: "Malaria", prescription: "Coartem 80/480mg — 1 tab BD × 3 days", doctor: "Dr. Adeyemi" },
-  { id: "r2", patientId: "p1", date: "2026-03-04", complaint: "Routine check-up", diagnosis: "Healthy", prescription: "Multivitamins daily", doctor: "Dr. Okafor" },
-  { id: "r3", patientId: "p2", date: "2026-06-09", complaint: "Persistent cough", diagnosis: "Upper respiratory infection", prescription: "Amoxicillin 500mg — 1 cap TDS × 5 days", doctor: "Dr. Adeyemi" },
-  { id: "r4", patientId: "p3", date: "2026-05-30", complaint: "Sprained ankle", diagnosis: "Grade 1 sprain", prescription: "Ibuprofen 400mg PRN; rest", doctor: "Dr. Bello" },
-  { id: "r5", patientId: "p4", date: "2026-06-15", complaint: "Itchy eyes, sneezing", diagnosis: "Allergic rhinitis", prescription: "Loratadine 10mg OD × 7 days", doctor: "Dr. Okafor" },
-  { id: "r6", patientId: "p6", date: "2026-06-10", complaint: "Stomach pain", diagnosis: "Gastritis", prescription: "Omeprazole 20mg OD × 14 days", doctor: "Dr. Adeyemi" },
-  { id: "r7", patientId: "p7", date: "2026-06-05", complaint: "Skin rash", diagnosis: "Contact dermatitis", prescription: "Hydrocortisone cream BD × 7 days", doctor: "Dr. Bello" },
+  { id: "r1", patientId: "p1", date: "2026-06-09", complaint: "Persistent cough", diagnosis: "Upper respiratory infection", prescription: "Amoxicillin 500mg — 1 cap TDS × 5 days", doctor: "Dr. Adeyemi" },
+  { id: "r2", patientId: "p2", date: "2026-06-10", complaint: "Stomach pain", diagnosis: "Gastritis", prescription: "Omeprazole 20mg OD × 14 days", doctor: "Dr. Adeyemi" },
+  { id: "r3", patientId: "p3", date: "2026-05-30", complaint: "Sprained ankle", diagnosis: "Grade 1 sprain", prescription: "Ibuprofen 400mg PRN; rest", doctor: "Dr. Bello" },
+  { id: "r4", patientId: "p4", date: "2026-06-15", complaint: "Itchy eyes, sneezing", diagnosis: "Allergic rhinitis", prescription: "Loratadine 10mg OD × 7 days", doctor: "Dr. Okafor" },
+  { id: "r5", patientId: "p6", date: "2026-06-05", complaint: "Skin rash", diagnosis: "Contact dermatitis", prescription: "Hydrocortisone cream BD × 7 days", doctor: "Dr. Bello" },
+  { id: "r6", patientId: "p8", date: "2026-06-18", complaint: "Fever and headache", diagnosis: "Malaria", prescription: "Coartem 80/480mg — 1 tab BD × 3 days", doctor: "Dr. Adeyemi" },
 ];
+
 
 const seedAppointments: Appointment[] = [];
 
