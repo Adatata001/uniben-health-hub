@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   getPatients,
@@ -6,7 +6,8 @@ import {
   getAppointments,
   saveAppointments,
   uid,
-  VICTORIA_ID,
+  getSessionStudentId,
+  clearSessionStudentId,
   type Patient,
   type ClinicalRecord,
   type Appointment,
@@ -32,26 +33,35 @@ function StudentPage() {
   const [myAppointments, setMyAppointments] = useState<Appointment[]>([]);
   const [booking, setBooking] = useState(false);
   const [ready, setReady] = useState(false);
+  const [studentId, setStudentId] = useState<string | null>(null);
+  const navigate = useNavigate();
 
-  const refresh = () => {
-    const patient = getPatients().find((p) => p.id === VICTORIA_ID);
+  const refresh = (id: string) => {
+    const patient = getPatients().find((p) => p.id === id);
     setMe(patient);
     setMyRecords(
       getRecords()
-        .filter((r) => r.patientId === VICTORIA_ID)
+        .filter((r) => r.patientId === id)
         .sort((a, b) => b.date.localeCompare(a.date)),
     );
     setMyAppointments(
       getAppointments()
-        .filter((a) => a.patientId === VICTORIA_ID)
+        .filter((a) => a.patientId === id)
         .sort((a, b) => b.date.localeCompare(a.date)),
     );
   };
 
   useEffect(() => {
-    refresh();
+    const id = getSessionStudentId();
+    if (!id || !getPatients().some((p) => p.id === id)) {
+      clearSessionStudentId();
+      navigate({ to: "/auth" });
+      return;
+    }
+    setStudentId(id);
+    refresh(id);
     setReady(true);
-  }, []);
+  }, [navigate]);
 
   const downloadPdf = async () => {
     if (!me) return;
@@ -60,10 +70,11 @@ function StudentPage() {
   };
 
   const submitBooking = (date: string, time: string, reason: string) => {
+    if (!studentId) return;
     const list = getAppointments();
     const next: Appointment = {
       id: uid("apt"),
-      patientId: VICTORIA_ID,
+      patientId: studentId,
       date,
       time,
       reason,
@@ -72,7 +83,7 @@ function StudentPage() {
     };
     saveAppointments([next, ...list]);
     setBooking(false);
-    refresh();
+    refresh(studentId);
   };
 
   if (!ready) {
@@ -87,9 +98,12 @@ function StudentPage() {
             <img src={unibenLogo} alt="University of Benin logo" width={28} height={28} className="h-7 w-7 shrink-0 object-contain" />
             <span className="font-mono text-xs md:text-sm">MedRecords / Student</span>
           </Link>
-          <Link to="/auth" className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-foreground md:text-xs">
+          <button
+            onClick={() => { clearSessionStudentId(); navigate({ to: "/auth" }); }}
+            className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-foreground md:text-xs"
+          >
             Sign out
-          </Link>
+          </button>
         </div>
       </header>
 
@@ -103,7 +117,7 @@ function StudentPage() {
                 </p>
                 <h1 className="font-display mt-2 text-2xl md:text-4xl">{me.name}</h1>
                 <p className="font-mono mt-1 text-xs text-muted-foreground">
-                  {me.matric} · {me.level} Level · Computer Science
+                  {me.matric} · {me.level} Level · {me.department ?? "CSC"}
                 </p>
               </div>
               <div className="flex flex-wrap gap-2">
