@@ -24,6 +24,7 @@ export type Patient = {
   genotype: "AA" | "AS" | "AC" | "SS" | "SC";
   allergies: string;
   status: Status;
+  department?: string;
   attachments?: Attachment[];
 };
 
