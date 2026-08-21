@@ -82,15 +82,16 @@ const seedAllergies = ["None", "Pollen", "Penicillin", "Dust", "Peanuts", "Latex
 const seedStatuses: Status[] = ["Active", "Follow-up", "Cleared"];
 
 const basePatients: Patient[] = [
-  { id: "p1", matric: "CSC/2021/0011", name: "Akhazogie Victoria Precious", level: "400", gender: "Female", dob: "2002-04-18", phone: "0803 111 0011", bloodGroup: "O+", genotype: "AA", allergies: "None", status: "Active", attachments: [] },
-  { id: "p2", matric: "CSC/2021/0142", name: "Daniel Osaze Ighodaro", level: "400", gender: "Male", dob: "2003-09-02", phone: "0803 111 0142", bloodGroup: "A+", genotype: "AS", allergies: "Penicillin", status: "Follow-up" },
+  { id: "p1", matric: "CSC/2021/0142", name: "Daniel Osaze Ighodaro", level: "400", gender: "Male", dob: "2003-09-02", phone: "0803 111 0142", bloodGroup: "A+", genotype: "AS", allergies: "Penicillin", status: "Follow-up" },
+  { id: "p2", matric: "CSC/2021/0166", name: "Samuel Eghosa", level: "400", gender: "Male", dob: "2003-12-04", phone: "0803 111 0166", bloodGroup: "A-", genotype: "AS", allergies: "None", status: "Active" },
   { id: "p3", matric: "CSC/2022/0307", name: "Grace Eweka", level: "300", gender: "Female", dob: "2004-01-22", phone: "0803 111 0307", bloodGroup: "B+", genotype: "AA", allergies: "None", status: "Cleared" },
   { id: "p4", matric: "CSC/2023/0488", name: "Kelvin Aigbe", level: "200", gender: "Male", dob: "2005-06-11", phone: "0803 111 0488", bloodGroup: "O-", genotype: "AA", allergies: "Dust", status: "Active" },
   { id: "p5", matric: "CSC/2024/0521", name: "Joy Iredia", level: "100", gender: "Female", dob: "2006-03-30", phone: "0803 111 0521", bloodGroup: "AB+", genotype: "AC", allergies: "None", status: "Cleared" },
-  { id: "p6", matric: "CSC/2021/0166", name: "Samuel Eghosa", level: "400", gender: "Male", dob: "2003-12-04", phone: "0803 111 0166", bloodGroup: "A-", genotype: "AS", allergies: "None", status: "Active" },
-  { id: "p7", matric: "CSC/2022/0289", name: "Blessing Idahosa", level: "300", gender: "Female", dob: "2004-07-19", phone: "0803 111 0289", bloodGroup: "O+", genotype: "AA", allergies: "Peanuts", status: "Follow-up" },
-  { id: "p8", matric: "CSC/2023/0098", name: "Tunde Bakare", level: "200", gender: "Male", dob: "2005-02-14", phone: "0803 111 0098", bloodGroup: "B-", genotype: "AA", allergies: "None", status: "Cleared" },
+  { id: "p6", matric: "CSC/2022/0289", name: "Blessing Idahosa", level: "300", gender: "Female", dob: "2004-07-19", phone: "0803 111 0289", bloodGroup: "O+", genotype: "AA", allergies: "Peanuts", status: "Follow-up" },
+  { id: "p7", matric: "CSC/2023/0098", name: "Tunde Bakare", level: "200", gender: "Male", dob: "2005-02-14", phone: "0803 111 0098", bloodGroup: "B-", genotype: "AA", allergies: "None", status: "Cleared" },
+  { id: "p8", matric: "CSC/2024/0612", name: "Efosa Omoregie", level: "100", gender: "Male", dob: "2006-08-09", phone: "0803 111 0612", bloodGroup: "O+", genotype: "AA", allergies: "None", status: "Active" },
 ];
+
 
 function createDummyPatient(index: number): Patient {
   const seq = index + 9;
